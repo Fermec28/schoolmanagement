@@ -4,4 +4,6 @@ class Student < ApplicationRecord
 	validates :adress, presence: true
 	validates :mail, presence: true
 	validates :mail, uniqueness: true
+
+	has_one :grade
 end

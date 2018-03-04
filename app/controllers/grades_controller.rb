@@ -21,12 +21,15 @@ class GradesController < ApplicationController
 
 	def show
 		@grade = Grade.find(params[:id])
+		if @grade.status == false ||  @grade.students.count<6
+			@students = Student.where(grade_id: nil)
+		end
 	end
 
 
 	private
 
 	def gradeparams
-		params.require(:grade).permit(:name)
+		params.require(:grade).permit(:name).merge(status: false)
 	end
 end

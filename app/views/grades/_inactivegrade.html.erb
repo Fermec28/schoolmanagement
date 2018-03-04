@@ -1,0 +1,14 @@
+<h3 class="alert alert-danger">Este curso actualmente se ecuentra inactivo</h3>
+
+<% if @grade.students.count > 0 %>
+	<h4>Aqui el listado de tus estudiantes  los cuales deberias modificar</h4>
+	<% @grade.students.each do  |student| %>
+		<li><%= link_to student.name, edit_student_path(student) %></li>
+	<% end %>
+<% end %>
+<h4>Aqui encontraras un listado de Estudiantes que podrias incluir en tu curso:</h4>
+<ul>
+	<% @students.each do |student|%>
+		<li><%= link_to student.name, edit_student_path(student)%></li>
+	<%end%>
+</ul>

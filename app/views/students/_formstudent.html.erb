@@ -16,5 +16,22 @@
   <%= f.label "Correo:" %>   
   <%= f.text_field :mail, class: "form-control" %><br />
 </div>
-  <%= f.submit %>
+<% if @student.id %>
+	<div class="form-group">
+  	<%= f.label "Curso:" %>  
+  	<select class="form-control" id="grade_id" name="student[grade_id]">
+
+  			<option value="">Sin curso</option>
+  			<% @grades.each do |grade| %>      
+      	<option value= "<%=grade.id%>" ><%= grade.name %></option>
+      	<% end %>
+    </select>
+	</div>
+<%end%>	
+
+ <%= f.submit %>		
+
 <% end %>
+
+
+

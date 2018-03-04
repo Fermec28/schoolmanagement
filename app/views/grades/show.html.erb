@@ -1,1 +1,6 @@
-<%= @grade.name %>
+<h1><%= @grade.name %></h1>
+<% if @grade.status%>
+	<%= render 'activegrade'%>
+<% else%>
+		<%= render 'inactivegrade'%>
+<%end %>
