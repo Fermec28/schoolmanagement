@@ -1,0 +1,8 @@
+<%= form_for @signature do |f| %>
+
+<div class="form-group">
+  <%= f.label "Nombre:" %>   
+  <%= f.text_field :name, class: "form-control" %><br />
+</div>
+  <%= f.submit %>
+<% end %>

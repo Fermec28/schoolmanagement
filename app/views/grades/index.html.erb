@@ -1,0 +1,8 @@
+
+<%= link_to "Crea un nuevo Curso",new_grade_path%>
+<hr>
+Cursos:
+<% @grades.each do |grade| %>
+
+	<p><%=link_to grade.name, grade%> </p>
+<% end %> 

@@ -1,0 +1,8 @@
+
+<%= link_to "Crea una nueva Materia",new_signature_path%>
+<hr>
+Materias:
+<% @signatures.each do |signature| %>
+
+	<p><%=link_to signature.name, signature%> </p>
+<% end %> 
