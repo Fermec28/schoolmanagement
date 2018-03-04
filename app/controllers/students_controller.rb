@@ -21,6 +21,7 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = Student.find(params[:id])
+		@signatures= Signature.all
 
 	end
 
@@ -31,16 +32,17 @@ class StudentsController < ApplicationController
 
 	def update		
 		student= Student.find(params[:id])
+		gradeold= Grade.find(student.grade_id) if  student.grade_id != nil
+		gradenew= studentparams[:grade_id]!= "" ? Grade.find(studentparams[:grade_id]):nil
 
-		grade= studentparams[:grade_id]!= "" ? Grade.find(studentparams[:grade_id]):nil
-
-		if grade!=nil and grade.students.count >=6
+		if gradenew !=nil and gradenew.students.count >=6
 			@errors= student.errors.full_messages
-			flash.now[:danger] = "Un Curso no puede tener mas de 6 estudiantes"
+			flash[:danger] = "Un Curso no puede tener mas de 6 estudiantes"
 			redirect_to edit_student_path(student)
 		else
 			if student.update(studentparams)
-				grade.updatestatus
+				gradenew.updatestatus if gradenew !=nil
+				gradeold.updatestatus if gradeold != nil
 				redirect_to student
 			else
 				@errors= student.errors.full_messages

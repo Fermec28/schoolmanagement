@@ -1,11 +1,13 @@
 class Grade < ApplicationRecord
 	validates :name, presence: true
 	validates :name, uniqueness: true
-	has_many :students
+	has_many  :students
 
 	def updatestatus
-		if self.students.count> 1 and self.students.count<7
+		if self.students.count> 1 
 			self.update(status: true)
+		else
+			self.update(status: false)
 		end		
 	end
 end

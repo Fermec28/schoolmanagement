@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-root to: 'signatures#index'
-resources :students
+root to: 'grades#index'
+
 resources :grades
 resources :signatures
+
+resources :students do 
+	resources :signatures	
+end
 end

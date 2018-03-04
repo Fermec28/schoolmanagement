@@ -1,14 +1,20 @@
 <h3 class="alert alert-success">Este curso actualmente se ecuentra activo</h3>
+<% if @grade.students.count ==6 %>
+
+<h4 class= "alert alert-warning">Este curso esta completamente lleno! </h4> 
+<% end %>
+
 <h4>Aqui el listado de tus estudiantes</h4>
 
 <% @grade.students.each do  |student| %>
 	<li><%= link_to student.name, student %></li>
 <% end %>
 
-
+<% if @students%>
 <h4>Encontraras un listado de Estudiantes que podrias incluir en tu curso:</h4>
 <ul>
 	<% @students.each do |student|%>
 		<li><%= link_to student.name, edit_student_path(student)%></li>
 	<%end%>
 </ul>
+<% end %>

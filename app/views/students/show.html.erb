@@ -1,1 +1,40 @@
-<%= @student.name %>
+
+<div class="row">
+  <div class="col-md-10"> <h2><%= @student.name %></h2> </div>
+  <div class="col-md-2"> 
+   <%= link_to "Editar",edit_student_path(@student),class: "glyphicon glyphicon-pencil" %> 
+  </div>
+	
+
+</div>
+
+
+<% if @student.grade_id == nil || Grade.find(@student.grade_id).status == false %> 
+	<h3 class= "alert alert-warning">El estudiante actualmente no esta asociado a algun Curso valido, por favor Actualiza esta informacion</h3>	
+<% else %>
+
+<h3>Estudiante del Curso <%= link_to Grade.find(@student.grade_id).name, Grade.find(@student.grade_id) %></h3>
+<% end %>
+
+
+<div class="row">
+	<div class="col-md-6"> 
+			<h3>Materias Inscritas:</h3>
+			<hr>
+			<ul>
+				<% @student.signatures do |signature| %>
+					<li><%= signature.name %></li>
+				<% end %>
+			</ul>
+	</div>
+
+	<div class="col-md-6">
+		<h3>Materias que podrias Inscribir:</h3>
+		<hr>
+		<ul>
+				<% @signatures.each do |signature| %>
+					<li><%= signature.name %></li>
+				<% end %>
+			</ul>
+	</div>
+</div>

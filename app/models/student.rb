@@ -6,4 +6,5 @@ class Student < ApplicationRecord
 	validates :mail, uniqueness: true
 
 	has_one :grade
+	has_and_belongs_to_many :signatures
 end
