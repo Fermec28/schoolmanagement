@@ -11,6 +11,10 @@ class SignaturesController < ApplicationController
 		if signature.save
 			redirect_to signature
 		else
+			@errors= signature.errors.full_messages
+			flash.now[:danger] = @errors
+			@signature= Signature.new
+			render :new
 		end
 	end
 

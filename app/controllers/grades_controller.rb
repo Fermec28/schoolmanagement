@@ -12,6 +12,10 @@ class GradesController < ApplicationController
 		if grade.save
 			redirect_to grade
 		else
+			@errors= grade.errors.full_messages
+			flash.now[:danger] = @errors
+			@grade= Grade.new
+			render :new
 		end
 	end
 

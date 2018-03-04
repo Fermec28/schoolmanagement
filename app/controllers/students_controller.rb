@@ -12,6 +12,10 @@ class StudentsController < ApplicationController
 		if student.save
 			redirect_to student
 		else
+			@errors= student.errors.full_messages
+			flash.now[:danger] = @errors
+			@student= Student.new
+			render :new
 		end
 	end
 
