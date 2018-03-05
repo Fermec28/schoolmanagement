@@ -38,10 +38,13 @@
 					
 					<% unless @student.signatures.count > 0 && @student.signatures.exists?(signature.id)  %>
 					<li>
-						<%= signature.name %>
+						
 						<%= form_for [@student,Signature.new]  do |f| %>
 							<%= f.hidden_field :signature_id, :value => signature.id %>											   									
-							<%= f.submit %>
+							
+							<button type="submit" class="btn btn-default btn-sm">		
+								<span  aria-hidden="true" class="glyphicon glyphicon-plus"> <%= signature.name%></span>		
+							</button>
 						<% end %>
 						</li>
 					<% end %>					
