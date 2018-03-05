@@ -35,13 +35,17 @@
 		<hr>
 		<ul>
 				<% @signatures.each do |signature| %>
+					
+					<% unless @student.signatures.count > 0 && @student.signatures.exists?(signature.id)  %>
 					<li>
-					<%= signature.name %>
-					<%= form_for [@student,Signature.new]  do |f| %>
-						<%= f.hidden_field :signature_id, :value => signature.id %>											   									
-						<%= f.submit %>
-					<% end %>	
-					</li>
+						<%= signature.name %>
+						<%= form_for [@student,Signature.new]  do |f| %>
+							<%= f.hidden_field :signature_id, :value => signature.id %>											   									
+							<%= f.submit %>
+						<% end %>
+						</li>
+					<% end %>					
+					
 				<% end %>
 			</ul>
 	</div>
