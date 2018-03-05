@@ -49,9 +49,9 @@ class StudentsController < ApplicationController
 				flash.now[:danger] = @errors
 				redirect_to edit_student_path(student)
 			end	
-		end			
-		
+		end	
 	end
+
 
 	private
 

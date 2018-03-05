@@ -7,15 +7,26 @@ class SignaturesController < ApplicationController
 	end
 
 	def create
-		signature = Signature.new(signatureparams)
-		if signature.save
-			redirect_to signature
-		else
-			@errors= signature.errors.full_messages
-			flash.now[:danger] = @errors
-			@signature= Signature.new
-			render :new
+		
+		
+		if  params[:student_id] && signatureparams[:signature_id]
+
+			student= Student.find(params[:student_id]) 
+			student.signatures<< Signature.find(signatureparams[:signature_id])
+			redirect_to student
+			
+		else 
+			signature = Signature.new(signatureparams)
+			if signature.save
+				redirect_to signature
+			else
+				@errors= signature.errors.full_messages
+				flash.now[:danger] = @errors
+				@signature= Signature.new
+				render :new
+			end
 		end
+			
 	end
 
 	def show
@@ -23,9 +34,15 @@ class SignaturesController < ApplicationController
 	end
 
 
+	def destroy		
+		student= Student.find(params[:student_id]) 
+		student.signatures.delete(params[:id])
+		redirect_to student
+	end
+
 	private
 
 	def signatureparams
-		params.require(:signature).permit(:name)
+		params.require(:signature).permit(:name,:signature_id)
 	end
 end

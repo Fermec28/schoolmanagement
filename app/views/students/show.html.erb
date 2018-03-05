@@ -22,8 +22,10 @@
 			<h3>Materias Inscritas:</h3>
 			<hr>
 			<ul>
-				<% @student.signatures do |signature| %>
-					<li><%= signature.name %></li>
+				<% @student.signatures.each do |signature| %>
+					<li><%= signature.name %>
+						<%= link_to "", [@student,signature], method: :delete, class: "glyphicon glyphicon-trash"%>	
+					</li>
 				<% end %>
 			</ul>
 	</div>
@@ -33,7 +35,13 @@
 		<hr>
 		<ul>
 				<% @signatures.each do |signature| %>
-					<li><%= signature.name %></li>
+					<li>
+					<%= signature.name %>
+					<%= form_for [@student,Signature.new]  do |f| %>
+						<%= f.hidden_field :signature_id, :value => signature.id %>											   									
+						<%= f.submit %>
+					<% end %>	
+					</li>
 				<% end %>
 			</ul>
 	</div>
