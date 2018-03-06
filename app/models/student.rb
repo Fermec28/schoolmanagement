@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+	resourcify
+  include Authority::Abilities
 	validates :name, presence: true
 	validates :surname, presence: true
 	validates :adress, presence: true
