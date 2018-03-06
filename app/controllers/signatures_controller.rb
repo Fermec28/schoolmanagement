@@ -1,4 +1,5 @@
-class SignaturesController < ApplicationController
+class SignaturesController < ApplicationController	 
+
 	def index
 		@signatures= Signature.all
 	end
