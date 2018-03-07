@@ -1,0 +1,43 @@
+<h1>Listado usuarios registrados</h1>
+	<div class="table-responsive">          
+			<table class="table table-bordered table-hover">
+			<thead>
+			  <tr>        
+				<th>Email</th>
+				<th>Administrador?</th>
+				<th>Actualizar</th>
+				<th>Eliminar</th>
+				
+			  </tr>
+			</thead>
+			<tbody>
+			<% @users.each  do |user| %> 
+			<tr>
+				<td><%= user.email %></td>				
+				<%= form_for user do |f|%>
+					
+					<td>
+						<select class="form-control" id="grade_id" name="user[role]">
+  						<option value="newuser">Nuevo usuario</option>
+  						<% if  user.can_update?(User.new)%>
+  						<option selected value= "admin" >Administrador</option>  
+  						<% else %>
+  						<option value= "admin" >Administrador</option>  
+  						<% end %>
+  						    					
+    				</select>
+					</td>				
+					<td>
+						<button type="submit" class="btn btn-default btn-sm">		
+								<span  aria-hidden="true" class="glyphicon glyphicon-edit"></span>		
+							</button>						
+					</td>
+					
+				<% end%>
+				<td><%= link_to "", user, method: :delete, class: "glyphicon glyphicon-trash"%>	</td>
+			</tr>
+			<% end %>
+		
+			</tbody>
+		  </table>
+		  </div>

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 	include Authority::UserAbilities
+
+  include Authority::Abilities
 	  
   rolify
   # Include default devise modules. Others available are:
