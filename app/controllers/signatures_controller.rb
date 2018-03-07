@@ -1,4 +1,5 @@
 class SignaturesController < ApplicationController	 
+	authorize_actions_for Signature, :only => [:create, :update, :new]
 
 	def index
 		@signatures= Signature.all

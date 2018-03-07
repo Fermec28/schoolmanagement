@@ -1,5 +1,5 @@
 class GradesController < ApplicationController
-
+	authorize_actions_for Grade, :only => [:create, :update, :new]
 	def index
 		@grades= Grade.all
 	end

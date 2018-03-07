@@ -1,5 +1,7 @@
-class StudentsController < ApplicationController
-	 
+	class StudentsController < ApplicationController
+	
+	authorize_actions_for Student, :only => [:create, :update, :new]
+
 	def index
 		@students= Student.all
 	end
