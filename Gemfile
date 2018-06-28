@@ -35,6 +35,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'authority'
 gem 'rolify'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
